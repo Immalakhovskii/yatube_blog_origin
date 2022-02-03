@@ -3,5 +3,24 @@
   {{ title }}
 {% endblock %}
 {% block content %}
-  {{ text }}
+{% for post in posts %}
+<div class="container py-5">
+  <article>
+    <ul>
+      <li>
+        Автор: {{ post.author.get_full_name }}
+      </li>
+      <li>
+        Сообщество: {{ group }}
+      </li>
+      <li>
+        Дата публикации: {{ post.pub_date|date:"d E Y" }}
+      </li>
+    </ul>
+    <p>{{ post.text }}</p>    
+    <a href="">Все записи группы</a>
+  </article>
+</div>
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
 {% endblock %}
